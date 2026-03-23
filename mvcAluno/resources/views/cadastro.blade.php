@@ -22,7 +22,7 @@
         <label for="email">Email: </label>
         <input type="text" name="email" id="email" placeholdet="Email..."
             require value="{{old('email')}}"
-        >
+         >
 
         <input type="submit" value="Cadastrar">
     </form>

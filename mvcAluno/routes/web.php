@@ -14,3 +14,7 @@ Route::get('/aluno/cadastrar', function(){
 })->name('aluno.cadastro');
 
 Route::post('/aluno/salvar', [AlunoController::class, 'add'])->name('aluno.salvar');
+
+Route::get('/aluno/{id}/atualizar', [AlunoController::class, 'atualizar'])->name('aluno.atualizar');
+
+Route::put('aluno/{id}/update', [AlunoController::class, 'update'])->name('aluno.update');
