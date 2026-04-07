@@ -1,47 +1,71 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_','-',app()->getLocale()) }}">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produtos</title>
 </head>
 <body>
-    <h2>Cadastro de Produtos</h2>
+
+    <h1>Cadastro de Produtos</h1>
 
     @if(session('success'))
-        <p style="color: green">{{session('success')}}</p>
+        <p style="color:green">{{ session('success') }}</p>
     @endif
 
-    <form action="{{route('produto.salvar')}}" method="POST">
+    <form action="{{ route('produto.salvar') }}" method="POST">
         @csrf
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" placeholdet="Nome..."
-            require value="{{old('nome')}}"
-        >
+
+        <label>Nome:</label>
+        <input type="text" name="nome" placeholder="Produto..." required value="{{ old('nome') }}">
         <br><br>
-        <label for="quantidade">Quantidade: </label>
-        <input type="text" name="quantidade" id="quantidade" placeholdet="Quantidade..."
-            require value="{{old('quantidade')}}"
-        >
+
+        <label>Quantidade:</label>
+        <input type="text" name="quantidade" placeholder="Quantidade..." required value="{{ old('quantidade') }}">
         <br><br>
-        <label for="preco">Preço: </label>
-        <input type="text" name="preco" id="preco" placeholdet="Preço..."
-            require value="{{old('preco')}}"
-        >
-        
-        <input type="submit" value="Cadastrar">
+
+        <label>Preço:</label>
+        <input type="text" name="preco" placeholder="Preço..." required value="{{ old('preco') }}">
+        <br><br>
+
+        <label>Setor:</label>
+        <select name="setor_id" required>
+            <option value="">Selecione um Setor</option>
+
+            @foreach ($setores as $setor)
+                <option value="{{ $setor->id }}"
+                    {{ old('setor_id') == $setor->id ? 'selected' : '' }}>     
+                    Nome do Setor: {{ $setor->nome }} - Corredor; {{ $setor->ncorredor }}
+                </option>
+            @endforeach
+        </select>
+
+        <br><br>
+        <label>Detalhe do produto:</label>
+        <select name="detalhe_id" required>
+            <option value="">Selecione um detalhe</option>
+
+            @foreach ($detalhes as $detalhe)
+                <option value="{{ $detalhe->id }}"
+                    {{ old('detalhe_id') == $detalhe->id ? 'selected' : '' }}>
+                    Descrição: {{ $detalhe->descricao }} - Tamanho: {{ $detalhe->tamanho }} - Peso: {{ $detalhe->peso }}
+            </option>
+            @endforeach
+        </select>
+        <br><br>
+
+        <button type="submit">Cadastrar</button>
     </form>
 
     @if($errors->any())
-        <div style="color: red">
+        <div style="color:red">
             <ul>
                 @foreach ($errors->all() as $erro)
-                    <li>{{ $erro}}</li>
+                    <li>{{ $erro }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
 
-    
 </body>
 </html>
