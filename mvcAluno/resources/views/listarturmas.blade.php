@@ -6,14 +6,12 @@
     <title>Lista</title>
 </head>
 <body>
-    <h1>Relatório de Alunos</h1>
+    <h1>Relatório de Turmas</h1>
+
     <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>NOME</th>
-                <th>EMAIL</th>
-                <th>ID TURMA</th>
                 <th>NÚMERO DA SALA</th>
                 <th>SÉRIE</th>
                 <th>Atualizar</th>
@@ -21,19 +19,16 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($alunos as $aluno)
+            @forelse($turmas as $turma)
                 <tr>
-                    <td>{{ $aluno->id }}</td>
-                    <td>{{ $aluno->nome }}</td>
-                    <td>{{ $aluno->email }}</td>
-                    <td>{{ $aluno->turma?->id }}</td>
-                    <td>{{ $aluno->turma?->numSala}}</td>
-                    <td>{{ $aluno->turma?->serie}}</td>
+                    <td>{{ $turma->id }}</td>
+                    <td>{{ $turma->numSala }}</td>
+                    <td>{{ $turma->serie }}</td>
                     <td>
                         <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
                     </td>
                     <td>
-                        <form action="{{route('aluno.deletar', $aluno->id)}}" method="POST"
+                        <form action="{{route('turma.deletar', $turma->id)}}" method="POST"
                             onsubmit="return confirm('Deseja realmente excluir?');">
                             @csrf 
                             @method('DELETE')
@@ -43,7 +38,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8">Nenhum Aluno Encontrado</td>
+                    <td colspan="5">Nenhuma Turma Encontrada</td>
                 </tr>
             @endforelse
         </tbody>

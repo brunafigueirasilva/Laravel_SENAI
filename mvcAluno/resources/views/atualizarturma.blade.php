@@ -7,21 +7,19 @@
     <title>Atualizar</title>
 </head>
 <body>
-    <h1>Atualizar Aluno</h1>
+    <h1>Atualizar Turma</h1>
 
     @if(session('success'))
         <p style="color: green"> {{session('success')}}</p>
     @endif
 
-    <form action="{{route('aluno.update',$aluno->id)}}" method="POST"> 
+    <form action="{{route('turma.update',$turma->id)}}" method="POST"> 
         @csrf
         @method('PUT')
 
-        <input type="text" name="nome" value="{{old('nome', $aluno->nome)}}" required>
+        <input type="number" name="numSala" value="{{old('numSala', $turma->numSala)}}" required>
 
-        <input type="text" name="email" value="{{old('email', $aluno->email)}}" required>
-
-        <input type="number" name="turma" value="{{old('turma', $aluno->turma_id)}}" required>
+        <input type="text" name="serie" value="{{old('serie', $turma->serie)}}" required>
 
         <button type="submit">Atualizar</button>
 

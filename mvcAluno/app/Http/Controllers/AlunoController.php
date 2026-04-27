@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Models\Aluno;
+use App\Models\Turma; 
 
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller {
 
     public function listar() {
-        $query = Aluno::query();
-        $alunos = $query->get();
+        // $query = Aluno::query();
+        // $alunos = $query->get();
+        $alunos = Aluno::with('turma')->get();
         return view('listar', compact('alunos'));
     }
     
@@ -17,12 +19,14 @@ class AlunoController extends Controller {
 
     $request->validate([
         'nome'=> 'required|string|max:255',
-        'email'=> 'required|string|max:255|unique:users,email'
+        'email'=> 'required|string|max:255|unique:alunos,email',
+        'turma_id'=> 'nullable|exists:turmas,id'
     ]);
 
     Aluno::create([
         'nome'=>$request->nome,
-        'email'=>$request->email
+        'email'=>$request->email,
+        'turma_id'=>$request->turma_id
     ]);
 
     return redirect()->back()->with('success','Aluno Cadastrado com sucesso!');
@@ -30,7 +34,9 @@ class AlunoController extends Controller {
 
     public function atualizar ($id){
         $aluno = Aluno::findOrFail($id);
-        return view('atualizar', compact('aluno'));
+        $turmas = Turma::all();
+
+    return view('atualizar', compact('aluno', 'turmas'));
     }
 
     public function update (Request $request, $id){
@@ -53,5 +59,10 @@ class AlunoController extends Controller {
         $aluno->delete();
 
         return redirect()->route('aluno.listar')->with('success', 'Aluno excluído com sucesso!');
+    }
+
+    public function cadastro(){
+    $turmas = Turma::all();
+    return view('cadastro', compact('turmas'));
     }
 }
