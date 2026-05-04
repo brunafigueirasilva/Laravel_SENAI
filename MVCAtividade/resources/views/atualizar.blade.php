@@ -30,34 +30,36 @@
         <input type="number" name="salario" value="{{ old('salario', $funcionario->salario) }}" required>
 
         <button type="submit">Atualizar Funcionario</button>
+        <br><br>
     </form>
 
-    <form action="{{ route('departamento.update', $departamento->id) }}" method="POST" >
+    <form action="{{ route('departamento.update', $departamentos->id) }}" method="POST" >
         @csrf
         @method('PUT')
 
-        <input type="text" name="CPF" value="{{ old('CPF', $departamento->CPF) }}" required>
+        <input type="text" name="CPF" value="{{ old('CPF', $departamentos->CPF) }}" required>
 
-        <input type="date" name="data_criacao" value="{{ old('data_criacao', $departamento->data_criacao) }}" required>
+        <input type="date" name="data_criacao" value="{{ old('data_criacao', $departamentos->data_criacao) }}" required>
 
-        <input type="number" name="orcamento" value="{{ old('orcamento', $departamento->orcamento) }}" required>
+        <input type="number" name="orcamento" value="{{ old('orcamento', $departamentos->orcamento) }}" required>
         
-        <input type="date" name="sigla" value="{{ old('sigla', $departamento->sigla) }}" required>
+        <input type="date" name="sigla" value="{{ old('sigla', $departamentos->sigla) }}" required>
 
-        <button type="submit">Atualizar Departamento</button>
+        <button type="submit">Atualizar Departamentos</button>
+        <br><br>
     </form>
 
-    <form action="{{ route('dadopessoal.update', $dadopessoal->id) }}" method="POST" >
+    <form action="{{ route('dadopessoal.update', $dadospessoais->id) }}" method="POST" >
         @csrf
         @method('PUT')
 
-        <input type="number" name="nome" value="{{ old('nome', $dadopessoal->nome) }}" required>
+        <input type="number" name="nome" value="{{ old('nome', $dadospessoais->nome) }}" required>
 
-        <input type="number" name="RG" value="{{ old('RG', $dadopessoal->RG) }}" required>
+        <input type="number" name="RG" value="{{ old('RG', $dadospessoais->RG) }}" required>
 
-        <input type="date" name="data_nascimento" value="{{ old('data_nascimento', $dadopessoal->data_nascimento) }}" required>
+        <input type="date" name="data_nascimento" value="{{ old('data_nascimento', $dadospessoais->data_nascimento) }}" required>
         
-        <input type="number" name="CEP" value="{{ old('CEP', $dadopessoal->CEP) }}" required>
+        <input type="number" name="CEP" value="{{ old('CEP', $dadospessoais->CEP) }}" required>
 
         <button type="submit">Atualizar Dados Pessoais</button>
     </form>

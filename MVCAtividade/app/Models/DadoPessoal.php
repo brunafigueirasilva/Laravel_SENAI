@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class DadoPessoal extends Model
 {
-    protected $table = 'dados_pessoais';
+    protected $table = 'DadosPessoais';
 
     protected $fillable = [
         'funcionario_id',
-        'cpf',
-        'telefone',
-        'endereco'
+        'CPF',
+        'RG',
+        'data_nascimento',
+        'CEP'
     ];
 
     public function funcionario()

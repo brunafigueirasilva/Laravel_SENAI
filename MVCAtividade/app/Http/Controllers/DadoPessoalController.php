@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\DadoPessoal;
-use App\Models\Funcionario;
+use App\Models\DadoPesso;
 use Illuminate\Http\Request;
 
 class DadoPessoalController extends Controller{
 
     public function listar(){
-        $dadospessoais = DadoPessoal::with('funcionario')->get();
-        return view ('listar', compact ('dadospessoais'));
+        $dadospessoais = DadoPessoal::with('dadopessoal')->get();
+        return view ('listarDadoPessoal', compact ('dadospessoais'));
     }
 
     public function add(Request $request){
 
         $request->validate([
-            'CPF' => 'required|numeric',
-            'RG' => 'required|numeric',
-            'data_nascimento' => 'required|numeric',
-            'CEP' => 'required|numeric'
+            'CPF' => 'required',
+            'RG' => 'required',
+            'data_nascimento' => 'required',
+            'CEP' => 'required'
         ]);
 
         DadoPessoal::create([

@@ -18,13 +18,11 @@ class Funcionario extends Model
         'departamento_id'
     ];
 
-    public function departamento()
-    {
+    public function departamento(){
         return $this->belongsTo(Departamento::class);
     }
 
-    public function dadopessoal()
-    {
+    public function dadopessoal(){
         return $this->hasOne(DadoPessoal::class);
     }
 }

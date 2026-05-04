@@ -9,9 +9,12 @@ class Departamento extends Model
     protected $table = 'departamentos';
 
     protected $fillable = [
-        'nome'
+        'nome',
+        'data_criacao',
+        'orcamento',
+        'sigla'
     ];
-    
+
     public function funcionarios()
     {
         return $this->hasMany(Funcionario::class);

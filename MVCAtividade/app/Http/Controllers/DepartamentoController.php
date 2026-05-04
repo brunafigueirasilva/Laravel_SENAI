@@ -9,13 +9,13 @@ class DepartamentoController extends Controller{
 
     public function listar(){
         $departamentos = Departamento::all();
-        return view('listar', compact('departamentos'));
+        return view('listarDepartamento', compact('departamentos'));
     }
 
     public function add(Request $request){
         $request->validate([
             'nome' => 'required|string|max:255',
-            'data_criacao' => 'required|integer',
+            'data_criacao' => 'required',
             'orcamento' => 'required|integer',
             'sigla' => 'required|string|max:255'
         ]);

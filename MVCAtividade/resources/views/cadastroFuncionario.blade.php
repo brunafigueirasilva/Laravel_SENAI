@@ -15,6 +15,9 @@
 <a href="{{ route('funcionario.listar') }}">Listar Funcionários</a>
 <br><br>
 
+<a href="{{ route('dadopessoal.listar') }}">Listar Dados Pessoais</a>
+<br><br>
+
 <form action="{{ route('funcionario.salvar') }}" method="POST">
     @csrf
 
@@ -36,17 +39,18 @@
     <label>Salário:</label>
     <input type="number" step="0.01" name="salario" value="{{ old('salario') }}"><br><br>
 
-    <button type="submit">Cadastrar</button>
-</form>
+        <label>Departamento do Funcionário:</label>
+        <select name="departamento_id" required>
+            <option value="">Selecione um departamento</option>
 
-<h2>Cadastro de Dados Pessoais</h2>
-
-@if(session('success'))
-    <p style="color:green">{{ session('success') }}</p>
-@endif
-
-<a href="{{ route('dadopessoal.listar') }}">Listar Dados Pessoais</a>
-<br><br>
+            @foreach ($departamentos as $departamento)
+                <option value="{{ $departamento->id }}"
+                    {{ old('departamento_id') == $departamento->id ? 'selected' : '' }}>
+                Nome: {{ $departamento->nome }} - Data de Criação: {{ $departamento->data_criacao }} - Orçamento: {{ $departamento->orcamento }} - Sigla: {{ $departamento->sigla }}
+            </option>
+            @endforeach
+        </select>
+        <br><br>
 
 <form action="{{ route('dadopessoal.salvar') }}" method="POST">
     @csrf
