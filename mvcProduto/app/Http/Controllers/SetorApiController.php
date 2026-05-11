@@ -7,14 +7,15 @@ use App\Models\Produto;
 
 use Illuminate\Http\Request;
 
-class SetorController extends Controller{
+class SetorApiController extends Controller{
 
-    public function listar(){
+    public function listarApi(){
         $setores = Setores::all();
-        return view('listarSetor', compact('setores'));
+        return response()->json($setores);
     }
 
-    public function add(Request $request){
+    
+    public function addApi(Request $request){
 
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -26,6 +27,9 @@ class SetorController extends Controller{
             'ncorredor' => $request->ncorredor 
         ]);
 
-        return redirect()->back()->with('success','Setor cadastrado com sucesso!');
+        return response()->json([
+            'message'=> 'Setor criado!',
+            'setor'=> $setor
+        ], 200);
     }
 }
