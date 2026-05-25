@@ -13,10 +13,10 @@ Route::get('/user', function (Request $request) {
 Route::get('autors', [AutorApiController::class, 'listarApi']);
 Route::post('autor/add', [AutorApiController::class, 'addApi']);
 Route::put('autor/atualizar/{id}', [AutorApiController::class, 'updateApi']);
-Route::delete('autor/deletar/{id}', [AutorApiController::class, 'deleteApi']);
+Route::delete('autor/deletar/{id}', [AutorApiController::class, 'deletar']);
 
 
 Route::get('filmes', [FilmeApiController::class, 'listarApi']);
 Route::post('filme/add', [FilmeApiController::class, 'addApi']);
 Route::put('filme/atualizar/{id}', [FilmeApiController::class, 'updateApi']);
-Route::delete('filme/deletar/{id}', [FilmeApiController::class, 'deleteApi']);
+Route::delete('filme/deletar/{id}', [FilmeApiController::class, 'deletar']);

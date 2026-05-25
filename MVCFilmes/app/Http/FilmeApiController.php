@@ -68,10 +68,10 @@ class FilmeApiController extends Controller
 
     public function deletar($id){
         $filme = Filmes::findOrFail($id); // buscar o filme para depois deletar
-        $filme->delete(); // faz o delete no banco de dados
+        $filme->delete(); //php  faz o delete no banco de dados
 
          return response()->json([
-            'message' => "Filem deletado!",
+            'message' => "Filme deletado!",
         ], 200);
       
     }
