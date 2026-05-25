@@ -64,7 +64,7 @@ class AutorController extends Controller
    public function deletar($id){
         $autor = Autor::findOrFail($id); // buscar o autor para depois deletar
         $autor->delete(); // faz o delete no banco de dados
-        $autor->deletar();
+        $autor->delete();
 
         return redirect()->route('autor.listar')
             ->with('success','Autor excluído com sucesso!');
