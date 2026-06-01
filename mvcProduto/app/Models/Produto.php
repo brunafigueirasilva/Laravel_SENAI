@@ -1,15 +1,15 @@
 <?php
+// Estou no arquivo Produto.php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Produto extends Model{
-
+class Produto extends Model
+{
     protected $fillable = [
         'nome',
         'quantidade',
-        'preco',
+        'valor',
         'setor_id'
     ];
 
@@ -17,7 +17,7 @@ class Produto extends Model{
         return $this->belongsTo(Setores::class);
     }
 
-    public function detalhe(){
-        return $this->hasOne(Detalhe::class, 'produtos_id');
+    public function detalhesProdutos(){
+        return $this->hasOne(DetalheProdutos::class);
     }
 }
